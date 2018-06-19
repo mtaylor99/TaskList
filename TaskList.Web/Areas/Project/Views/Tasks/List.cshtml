@@ -1,0 +1,135 @@
+﻿@model TasksListViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<div class="TL-Main">
+    <div class="TL-Header" style="margin-bottom: 10px">
+        <h2>Task List</h2>
+        <div>
+            <div style="float: left">
+                @using (Html.BeginForm("Action", "Tasks", new { area = "Project" }, FormMethod.Post))
+                {
+                    <button id="Action" type="submit" class="btn btn-primary">
+                        Action
+                    </button>
+                    <input id="selectedGridIds" type="hidden" name="selectedGridIds">
+
+                    <a id="CreateTask" class="openDialogButton">Create New</a>
+                }
+            </div>
+
+            <div style="float: right">
+                @using (Html.BeginForm("List", "Tasks", new { area = "Project" }, FormMethod.Get))
+                {
+                    <div>
+                        <input type="text" name="search" placeholder="Search grid..." value="@Model.Search">
+                        <button id="Search" type="submit" class="btn btn-primary">
+                            Search
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="TL-Content">
+        <table id="myTable" class="table table-hover table-sm table-bordered table-striped">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th data-field="id">Id</th>
+                    <th data-field="description">@Html.ActionLink("Description", "List", new { sortBy = Model.DescriptionSort })</th>
+                    <th>@Html.ActionLink("Status", "List", new { sortBy = Model.StatusSort })</th>
+                    <th>Location</th>
+                    <th>UserName</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TaskList.DAL.Models.Task task in Model.Tasks)
+                {
+                    <tr>
+                        <td><input id="selectGridCheckBox" type="checkbox" value="@task.TaskId"></td>
+                        <td>@task.TaskId</td>
+                        <td>@task.Description</td>
+                        <td>@task.Status.Name</td>
+                        <td>@task.Location.Description</td>
+                        <td>@task.User.UserName</td>
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@task.TaskId" method="post">
+                                <a class="btn btn-sm btn-primary" onclick="OpenEditDialogWindow(@task.TaskId)">Edit</a>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                <button type="button" class="btn btn-sm btn-default dropdown-toggle action-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <ul id="context-menu" class="dropdown-menu">
+            <li data-item="edit"><a>Edit</a></li>
+            <li data-item="delete"><a>Delete</a></li>
+            <li class="divider"></li>
+            <li data-item="images"><a>Images...</a></li>
+        </ul>
+
+    </div>
+    <div class="TL-Footer">
+        <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary" page-url-search="@Model.Search"
+             page-class-selected="btn-primary" class="btn-group pull-right m-1">
+        </div>
+    </div>
+</div>
+
+@if (RoleProvider.IsInRole(User, Roles.NoEntry))
+{
+    <h1>User In Role - Administrator</h1>
+}
+
+<script>
+    $("#myTable").bootstrapTable({
+        contextMenu: "#context-menu",
+        contextMenuButton: ".action-button",
+        onContextMenuItem: function (row, $el) {
+            if ($el.data("item") == "edit") {
+                OpenDialogWindow("Edit Task", "Project/Tasks/Edit/" + row.id, 800, 500);
+            } else if ($el.data("item") == "delete") {
+                alert("Delete: " + row.id + ' ' + row.description);
+            } else if ($el.data("item") == "images") {
+                OpenDialogWindow("Images", "Project/Images/List/" + row.id, 800, 500);
+            }
+        }
+    });
+
+    $(".openDialogButton").on("click", function (e) {
+
+        switch (e.target.id) {
+            case "CreateTask":
+                OpenDialogWindow("Create Task", "Project/Tasks/Create", 800, 500);
+                break;
+            case "EditTask":
+                OpenDialogWindow("Edit Task", "Project/Tasks/Edit/1", 800, 500);
+                break;
+        }
+
+    });
+
+    $("#Action").on("click", function (e) {
+
+        $("#selectedGridIds").val(GetSelectedCheckBoxesIds("selectGridCheckBox"));
+
+    });
+
+    function OpenEditDialogWindow(taskId) {
+        OpenDialogWindow("Edit Task", "Project/Tasks/Edit/" + taskId, 800, 500);
+    }
+</script>

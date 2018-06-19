@@ -1,0 +1,31 @@
+﻿@model AspNetGroupsViewModel
+        
+<div class="form-group">
+    <div>
+        <label asp-for="AspNetGroup.Name"></label>
+        <div><span asp-validation-for="AspNetGroup.Name" class="text-danger"></span></div>
+        <input asp-for="AspNetGroup.Name" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="AspNetGroup.Description"></label>
+        <div><span asp-validation-for="AspNetGroup.Description" class="text-danger"></span></div>
+        <input asp-for="AspNetGroup.Description" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="AspNetGroup.Active"></label>
+        <div><span asp-validation-for="AspNetGroup.Active" class="text-danger"></span></div>
+        <input type="checkbox" asp-for="AspNetGroup.Active" class="checkbox" />
+    </div>
+
+    <h3>Roles</h3>
+
+    @foreach (var item in Model.AspNetRolesList)
+    {
+        <div>
+            <input type="checkbox" name="selectedRoles" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+            <label>@item.Text</label>
+        </div>
+    }
+</div>

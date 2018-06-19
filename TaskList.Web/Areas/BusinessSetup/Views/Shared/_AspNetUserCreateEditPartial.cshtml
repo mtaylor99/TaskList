@@ -1,0 +1,36 @@
+﻿@model AspNetUsersViewModel
+
+<div class="form-group">
+    <div>
+        <label asp-for="UserName"></label>
+        <div><span asp-validation-for="UserName" class="text-danger"></span></div>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="FullName"></label>
+        <div><span asp-validation-for="FullName" class="text-danger"></span></div>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <div><span asp-validation-for="Email" class="text-danger"></span></div>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input name="password" class="form-control" />
+    </div>
+
+    <h3>Groups</h3>
+
+    @foreach (var item in Model.AspNetGroupsList)
+    {
+        <div>
+            <input type="checkbox" name="selectedGroups" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+            <label>@item.Text</label>
+        </div>
+    }
+</div>

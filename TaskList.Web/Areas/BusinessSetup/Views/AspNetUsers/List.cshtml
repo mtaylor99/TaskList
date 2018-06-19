@@ -1,0 +1,51 @@
+﻿@model AspNetUsersListViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Asp Net Users";
+}
+
+<div class="TL-Main">
+    <div class="TL-Header">
+        <h2>Asp Net Users</h2>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    </div>
+    <div class="TL-Content">
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Full Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            @foreach (AspNetUser user in Model.AspNetUsers)
+            {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.FullName</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+    <div class="TL-Footer">
+        <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary" class="btn-group pull-right m-1">
+        </div>
+    </div>
+</div>

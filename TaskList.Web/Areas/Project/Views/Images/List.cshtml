@@ -1,0 +1,20 @@
+﻿@model ImagesListViewModel
+
+@{
+    ViewData["Title"] = "Images";
+}
+
+<form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.TaskId" />
+    <input type="file" name="file" />
+    <button>Upload</button>
+</form>
+
+<br/>
+
+@foreach (var item in Model.ImageIds)
+{
+    <div style="padding-bottom: 10px">
+        <img src="/Images/ViewImage/@item" />
+    </div>
+}

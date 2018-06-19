@@ -1,0 +1,45 @@
+﻿@model TaskViewModel
+
+<div class="form-group">
+    <div>
+        <label asp-for="Task.Description"></label>
+        <div><span asp-validation-for="Task.Description" class="text-danger"></span></div>
+        <input asp-for="Task.Description" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Task.StatusId"></label>
+        <div><span asp-validation-for="Task.StatusId" class="text-danger"></span></div>
+        <select asp-for="Task.StatusId" asp-items="Model.Statuses" class="form-control">
+            <option></option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="Task.LocationId"></label>
+        <div><span asp-validation-for="Task.LocationId" class="text-danger"></span></div>
+        <select asp-for="Task.LocationId" asp-items="Model.Locations" class="form-control">
+            <option></option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="Task.UserId"></label>
+        <div><span asp-validation-for="Task.UserId" class="text-danger"></span></div>
+        <select asp-for="Task.UserId" asp-items="Model.Users" class="form-control">
+            <option></option>
+        </select>
+    </div>
+
+    <div>
+        <label>Active</label>
+        <input type="checkbox" class="checkbox" />
+    </div>
+
+</div>
+
+
+
+
+
+

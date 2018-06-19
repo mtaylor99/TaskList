@@ -1,0 +1,49 @@
+﻿@model LocationsListViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Locations";
+}
+
+<div class="TL-Main">
+    <div class="TL-Header">
+        <h2>Locations</h2>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    </div>
+    <div class="TL-Content">
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>ParentId</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            @foreach (Location location in Model.Locations)
+            {
+                <tr>
+                    <td>@location.LocationId</td>
+                    <td>@location.ParentId</td>
+                    <td>@location.Description</td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@location.LocationId" method="post">
+                            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@location.LocationId">Edit</a>
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="TL-Footer">
+        <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary" class="btn-group pull-right m-1">
+        </div>
+    </div>
+</div>

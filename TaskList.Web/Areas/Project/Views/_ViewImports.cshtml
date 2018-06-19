@@ -1,0 +1,11 @@
+﻿@using TaskList.Web.Models
+@using TaskList.Web.Models.ViewModels
+@using TaskList.Web.Infrastructure
+@using Microsoft.AspNetCore.Identity
+@using TaskList.DAL.Models
+@using TaskList.Web.Attribute.RequiresRole
+
+@inject IRoleProvider RoleProvider
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper TaskList.Web.Infrastructure.*, TaskList.Web

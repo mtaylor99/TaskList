@@ -1,0 +1,37 @@
+﻿@model TaskList.DAL.Models.Location
+
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Create Location";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create" method="post">
+    <div class="TL-Main">
+        <div class="TL-Header">
+            <h2>Create Location</h2>
+        </div>
+        <div>
+            <div asp-validation-summary=" All" class="text-danger"></div>
+        </div>
+        <div class="TL-Content">
+            <div class="form-group">
+                <label asp-for="ParentId"></label>
+                <div><span asp-validation-for="ParentId" class="text-danger"></span></div>
+                <input asp-for="ParentId" class="form-control" />
+
+                <label asp-for="Description"></label>
+                <div><span asp-validation-for="Description" class="text-danger"></span></div>
+                <input asp-for="Description" class="form-control" />
+            </div>
+        </div>
+        <div class="TL-Footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="List" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</form>

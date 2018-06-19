@@ -1,0 +1,19 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.1.1",
+    "fontawesome": "4.7.0",
+    "jquery": "3.3.1",
+    "jquery.validation": "1.17.0",
+    "jquery-validation-unobtrusive": "v3.2.10",
+    "bootstrap-table-contextmenu": "v1.1.5",
+    "jquery-validation": "1.17.0",
+    "tether": "v1.4.4"
+  },
+  "resolutions": {
+    "bootstrap": "v4.1.1",
+    "jquery": "3.3.1",
+    "jquery-validation-unobtrusive": "v3.2.10"
+  }
+}

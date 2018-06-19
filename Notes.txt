@@ -1,0 +1,22 @@
+Package Manager
+===============
+
+Add-Migration Initial
+update-database
+
+
+References
+==========
+
+1) Split Identity Service Into Its Own Project
+      https://www.codeproject.com/Articles/1156558/ASP-NET-Core-Moving-IdentityDbContext-and-EF-model
+
+RIGHTS
+======
+
+Single [RequiresRole(Roles.Administrator)]
+
+Or     [RequiresRole(Roles.Administrator, Roles.Editor)]
+
+And    [RequiresRole(Roles.Editor)]
+       [RequiresRole(Roles.Editor)]
