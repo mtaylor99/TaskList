@@ -9,7 +9,8 @@
     "jquery-validation-unobtrusive": "v3.2.10",
     "bootstrap-table-contextmenu": "v1.1.5",
     "jquery-validation": "1.17.0",
-    "tether": "v1.4.4"
+    "tether": "v1.4.4",
+    "bootstrap-treeview": "v1.2.0"
   },
   "resolutions": {
     "bootstrap": "v4.1.1",
