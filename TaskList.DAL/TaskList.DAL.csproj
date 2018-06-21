@@ -226,9 +226,9 @@
     <Compile Include="Interfaces\IStatusRepository.cs" />
     <Compile Include="Interfaces\IImageRepository.cs" />
     <Compile Include="Interfaces\ITaskListRepository.cs" />
-    <Compile Include="Migrations\20180528190012_Initial.cs" />
-    <Compile Include="Migrations\20180528190012_Initial.designer.cs">
-      <DependentUpon>20180528190012_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\20180621141258_Initial.cs" />
+    <Compile Include="Migrations\20180621141258_Initial.designer.cs">
+      <DependentUpon>20180621141258_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Compile Include="Models\AspNetGroup.cs" />

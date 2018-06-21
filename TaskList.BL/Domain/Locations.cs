@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using TaskList.BL.Helpers;
 using TaskList.BL.Interaces;
 using TaskList.DAL.Interfaces;
 using TaskList.DAL.Models;
@@ -37,13 +38,15 @@ namespace TaskList.BL.Domain
                 .Take(pageSize);
         }
 
-        public List<Location> GetAllLocations()
+        public IEnumerable<LocationTreeNode> GetLocationTree()
         {
-            logger.LogInformation("Locations Business Logic - GetAllLocations");
+            logger.LogInformation("Locations Business Logic - GetLocationTree");
 
-            return locationRepository.GetLocations
+            var locations = locationRepository.GetLocations
                 .OrderBy(l => l.LocationId)
                 .ToList();
+
+            return locations.GenerateTree(c => c.LocationId, c => c.ParentId);
         }
 
         public int GetLocationsCount()
