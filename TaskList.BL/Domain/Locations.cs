@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using TaskList.BL.Interaces;
 using TaskList.DAL.Interfaces;
@@ -34,6 +35,15 @@ namespace TaskList.BL.Domain
                 .OrderBy(l => l.LocationId)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize);
+        }
+
+        public List<Location> GetAllLocations()
+        {
+            logger.LogInformation("Locations Business Logic - GetAllLocations");
+
+            return locationRepository.GetLocations
+                .OrderBy(l => l.LocationId)
+                .ToList();
         }
 
         public int GetLocationsCount()
