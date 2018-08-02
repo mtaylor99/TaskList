@@ -20,6 +20,10 @@ function OpenDialogWindow(title, content, dialogWidth, dialogHeight) {
     $('.modal-body').load(content, function () {
         $('#myModal').modal({ show: true });
     });
+
+    $('#myModal').on('click', '.close', function () {
+        $('#myMainPageInput').val("JSON data being passed back to the main function.");
+    });
 }
 
 function GetSelectedCheckBoxesIds(checkBoxId) {
